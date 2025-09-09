@@ -44,7 +44,7 @@ public final class ECDSA {
     
     public func verifySignature(_ sigData: Data, message: Data, publicKeyData: Data) throws -> Bool {
         guard let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY)) else { return false }
-        defer { secp256k1_context_destroy(ctx); }
+        defer { secp256k1_context_destroy(ctx) }
         var pubkey = secp256k1_pubkey()
         var signature = secp256k1_ecdsa_signature()
         secp256k1_ecdsa_signature_parse_der(ctx, &signature, [UInt8](sigData), sigData.count)
